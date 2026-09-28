@@ -1,0 +1,39 @@
+name: Build Wiper
+
+on: [push]
+
+jobs:
+  build:
+    name: Build for ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Build Windows
+      if: matrix.os == 'windows-latest'
+      run: |
+        windres resource.rc -O coff resource.o
+        gcc wiper.c tinyfiledialogs.c resource.o -o Wiper.exe -lcomdlg32 -lole32 -lshell32
+
+    - name: Build Linux
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        gcc wiper.c tinyfiledialogs.c -o wiper -pthread -ldl
+
+    - name: Build macOS
+      if: matrix.os == 'macos-latest'
+      run: |
+        clang wiper.c tinyfiledialogs.c -o wiper -framework Cocoa
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: wiper-${{ matrix.os }}
+        path: |
+          Wiper.exe
+          wiper
