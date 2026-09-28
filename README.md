@@ -1,6 +1,12 @@
 Wiper - Secure File & Folder Shredder
 Copyright (c) 2026 Wiper. Free to use; attribution and credit are required.
 
+--- ABOUT ---
+The ultimate digital cleanser for your files. Whether you're responsibly 
+disposing of old hardware or just making sure things are gone for good, 
+Wiper gets the job done. (No subscriptions required—it's just a tiny 
+140KB C utility that does what it's told).
+
 --- LEGAL DISCLAIMER & LIABILITY WAIVER ---
 By downloading, compiling, installing, or interacting with Wiper in any way, 
 you explicitly agree that you assume 100% of the responsibility, liability, 
